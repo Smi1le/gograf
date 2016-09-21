@@ -111,14 +111,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
-    <ClInclude Include="Arms.h" />
-    <ClInclude Include="Body.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Drawable.h" />
-    <ClInclude Include="Ears.h" />
     <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="Eye.h" />
     <ClInclude Include="Flower.h" />
-    <ClInclude Include="Legs.h" />
+    <ClInclude Include="Mouth.h" />
     <ClInclude Include="MovableFlower.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Person.h" />
@@ -128,14 +126,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp" />
-    <ClCompile Include="Arms.cpp" />
-    <ClCompile Include="Body.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
-    <ClCompile Include="Ears.cpp" />
     <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="Eye.cpp" />
     <ClCompile Include="Flower.cpp" />
-    <ClCompile Include="Legs.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mouth.cpp" />
     <ClCompile Include="MovableFlower.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Person.cpp" />

@@ -2,21 +2,22 @@
 #include "Ellipse.h"
 
 
-CEllipse::CEllipse(float firstRadius, float secondRadius, int x, int y)
-	: m_firstRadius(firstRadius)
-	, m_secondRadius(secondRadius)
-	, m_position({x, y})
-	, m_petalCount(20)
-{}
-
-void CEllipse::SetFirstRadius(float radius)
+void CEllipse::Setup(float firstRadius, float secondRadius, int x, int y)
 {
-	m_firstRadius = radius;
+	SetSize(firstRadius, secondRadius);
+	m_position = { x, y };
+	m_petalCount = 20;
 }
 
-void CEllipse::SetSecondRadius(float radius)
+void CEllipse::SetSize(float firstRadius, float secondRadius)
 {
-	m_secondRadius = radius;
+	m_size = { firstRadius, secondRadius };
+}
+
+void CEllipse::SetColor(glm::fvec3 const &color)
+{
+	SetCenterColor(color);
+	SetPetalColor(color);
 }
 
 void CEllipse::SetCenterColor(glm::fvec3 const &color)
@@ -45,8 +46,8 @@ void const CEllipse::Draw()
 	for (float angle = 0; angle <= float(2 * M_PI) + 0.5f * step; angle += step)
 	{
 		float fixedAngle = (fabsf(angle - float(2 * M_PI)) < 1e-4f) ? 0 : angle;
-		float x = m_firstRadius * cosf(fixedAngle);
-		float y = m_secondRadius * sinf(fixedAngle);
+		float x = m_size.width * cosf(fixedAngle);
+		float y = m_size.height * sinf(fixedAngle);
 		glVertex2f(x + m_position.x, y + m_position.y);
 	}
 	glEnd();

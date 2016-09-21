@@ -3,7 +3,8 @@
 
 static const glm::fvec3 CENTER_COLOR = { 1.f, 0.7f, 1.f };
 static const glm::fvec3 PETAL_COLOR = { 0.1f, 0.7f, 1.f };
-
+static const glm::fvec3 WHITE_COLOR = { 1.f, 1.f, 1.f };
+static const glm::fvec3 PINK_COLOR = { 1.f, 0.5f, 1.f };
 
 CPerson::~CPerson()
 {
@@ -13,32 +14,71 @@ CPerson::~CPerson()
 void CPerson::Setup(glm::fvec2 const &position)
 {
 	m_position = position;
-	m_pArms = std::make_unique<CArms>();
-	m_pArms->SetupArms({ 20.f, 10.f });
-	m_pArms->SetCenterColor(CENTER_COLOR);
-	m_pArms->SetPetalColor(PETAL_COLOR);
-	m_pArms->SetPositionFirstArm({ 290.f, 290.f });
-	m_pArms->SetPositionSecondArm({ 410.f, 290.f });
+	m_pArms.first = std::make_unique<CEllipse>();
+	m_pArms.first->Setup(10.f, 20.f );
+	m_pArms.first->SetCenterColor(PETAL_COLOR);
+	m_pArms.first->SetPetalColor(PETAL_COLOR);
+	m_pArms.first->SetPosition({ 290.f, 290.f });
 
-	m_pBody = std::make_unique<CBody>();
-	m_pBody->SetRadius(60.f);
+	m_pArms.second = std::make_unique<CEllipse>();
+	m_pArms.second->Setup(10.f, 20.f);
+	m_pArms.second->SetCenterColor(PETAL_COLOR);
+	m_pArms.second->SetPetalColor(PETAL_COLOR);\
+	m_pArms.second->SetPosition({ 410.f, 290.f });
+
+	m_pBody = std::make_unique<CEllipse>();
+	m_pBody->Setup(60.f, 60.f);
 	m_pBody->SetPosition({ 350.f, 250.f });
-	m_pBody->SetPetalColor(PETAL_COLOR);
-	m_pBody->SetCenterColor(CENTER_COLOR);
+	m_pBody->SetColor(PETAL_COLOR);
 
-	m_pEars = std::make_unique<CEars>();
-	m_pEars->Setup(15.f, 50.f);
-	m_pEars->SetPositionFirstEar({325.f, 160.f});
-	m_pEars->SetPositionSecondEar({ 375.f, 160.f });
-	m_pEars->SetPetalColor(PETAL_COLOR);
-	m_pEars->SetCenterColor(CENTER_COLOR);
+	m_pEars.first = std::make_unique<CEllipse>();
+	m_pEars.first->Setup(15.f, 45.f);
+	m_pEars.first->SetPosition({325.f, 160.f });
+	m_pEars.first->SetPetalColor(PETAL_COLOR);
+	m_pEars.first->SetCenterColor(PETAL_COLOR);
 
-	m_pLegs = std::make_unique<CLegs>();
-	m_pLegs->Setup(10.f, 8.f);
-	m_pLegs->SetPetalColor(PETAL_COLOR);
-	m_pLegs->SetCenterColor(CENTER_COLOR);
-	m_pLegs->SetPositionFirstLeg({ 300.f, 300.f });
-	m_pLegs->SetPositionSecondLeg({ 400.f, 300.f });
+	m_pEars.second = std::make_unique<CEllipse>();
+	m_pEars.second->Setup(15.f, 45.f);
+	m_pEars.second->SetPosition({ 375.f, 160.f });
+	m_pEars.second->SetPetalColor(PETAL_COLOR);
+	m_pEars.second->SetCenterColor(PETAL_COLOR);
+
+	m_pLegs.first = std::make_unique<CEllipse>();
+	m_pLegs.first->Setup(18.f, 16.f);
+	m_pLegs.first->SetPetalColor(PETAL_COLOR);
+	m_pLegs.first->SetCenterColor(CENTER_COLOR);
+	m_pLegs.first->SetPosition({ 320.f, 310.f });
+	
+	m_pLegs.second = std::make_unique<CEllipse>();
+	m_pLegs.second->Setup(18.f, 16.f);
+	m_pLegs.second->SetPetalColor(PETAL_COLOR);
+	m_pLegs.second->SetCenterColor(CENTER_COLOR);
+	m_pLegs.second->SetPosition({ 380.f, 310.f });
+
+	m_pEyes.first = std::make_unique<CEye>();
+	m_pEyes.first->Setup(15.f, 20.f);
+	m_pEyes.first->SetPetalColor(WHITE_COLOR);
+	m_pEyes.first->SetCenterColor(WHITE_COLOR);
+	m_pEyes.first->SetPosition({ 335.f, 232.f });
+	m_pEyes.first->SetPositionPupil({340.f, 232.f});
+
+	m_pEyes.second = std::make_unique<CEye>();
+	m_pEyes.second->Setup(16.5f, 22.f);
+	m_pEyes.second->SetPetalColor(WHITE_COLOR);
+	m_pEyes.second->SetCenterColor(WHITE_COLOR);
+	m_pEyes.second->SetPosition({ 365.f, 230.f });
+	m_pEyes.second->SetPositionPupil({ 357.f, 232.f });
+
+	m_pNose = std::make_unique<CEllipse>();
+	m_pNose->Setup(7.f, 7.f);
+	m_pNose->SetColor(PINK_COLOR);
+	m_pNose->SetPosition({ 350.f, 250.f });
+
+	m_pMouth = std::make_unique<CMouth>();
+	m_pMouth->Setup();
+	m_pMouth->SetColor({ 0.f, 0.f, 1.f });
+	m_pMouth->SetPosition({ 350.f, 260.f });
+	m_pMouth->SetSize({ 30.f, 18.f });
 }
 
 
@@ -68,7 +108,20 @@ void CPerson::DeleteList()
 void CPerson::Redraw() const
 {
 	m_pBody->Draw();
-	m_pArms->Draw();
-	m_pEars->Draw();
-	m_pLegs->Draw();
+
+	m_pArms.first->Draw();
+	m_pArms.second->Draw();
+	
+	m_pEars.first->Draw();
+	m_pEars.second->Draw();
+	
+	m_pLegs.first->Draw();
+	m_pLegs.second->Draw();
+	
+	m_pEyes.first->Draw();
+	m_pEyes.second->Draw();
+
+	m_pNose->Draw();
+
+	m_pMouth->Draw();
 }

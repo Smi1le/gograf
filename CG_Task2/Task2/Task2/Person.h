@@ -1,10 +1,8 @@
 #pragma once
 #include <glm/vec2.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "Arms.h"
-#include "Body.h"
-#include "Ears.h"
-#include "Legs.h"
+#include "Eye.h"
+#include "Mouth.h"
 
 
 class CPerson
@@ -19,8 +17,11 @@ private:
 private:
 	mutable unsigned m_displayList = 0;
 	glm::fvec2 m_position;
-	std::unique_ptr<CArms> m_pArms;
-	std::unique_ptr<CBody> m_pBody;
-	std::unique_ptr<CEars> m_pEars;
-	std::unique_ptr<CLegs> m_pLegs;
+	std::pair<std::unique_ptr<CEllipse>, std::unique_ptr<CEllipse>> m_pArms;
+	std::pair<std::unique_ptr<CEllipse>, std::unique_ptr<CEllipse>> m_pEars;
+	std::pair<std::unique_ptr<CEllipse>, std::unique_ptr<CEllipse>> m_pLegs;
+	std::pair<std::unique_ptr<CEye>, std::unique_ptr<CEye>> m_pEyes;
+	std::unique_ptr<CEllipse> m_pBody;
+	std::unique_ptr<CEllipse> m_pNose;
+	std::unique_ptr<CMouth> m_pMouth;
 };
