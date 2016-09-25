@@ -8,23 +8,12 @@ const glm::vec4 QUIET_GREEN = {0.f, 0.5f, 0.2f, 1.f};
 
 CWindow::CWindow()
 {
-    auto pEmitter = std::make_unique<CParticleEmitter>();
-    pEmitter->SetPosition({0, 600});
-    pEmitter->SetAngleRange(0.7f * float(M_PI), 0.9f * float(M_PI));
-    pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
-    pEmitter->SetLifetimeRange(10.f, 20.f);
-    pEmitter->SetPetalsCountRangle(5, 9);
-    pEmitter->SetRadiusRange(40.f, 75.f);
-    pEmitter->SetSpeedRange(8.f, 15.f);
-    m_system.SetEmitter(std::move(pEmitter));
-
     SetBackgroundColor(QUIET_GREEN);
 	m_person.Setup({ 300.f, 300.f });
 }
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
-    m_system.Advance(deltaSeconds);
 }
 
 void CWindow::OnDrawWindow(const glm::ivec2 &size)
