@@ -13,6 +13,7 @@ protected:
     // CAbstractWindow interface
     void OnUpdateWindow(float deltaSeconds) override;
     void OnDrawWindow(const glm::ivec2 &size) override;
+	void OnDispatchEvent(SDL_Event const &event) override;
 
 private:
     void SetupView(const glm::ivec2 &size);

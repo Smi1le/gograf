@@ -8,7 +8,7 @@ CShape::CShape(SHAPE_TYPE const & type)
 	{
 		m_components.push_back(CRectangle());
 	}
-	Create();
+	TuneShape();
 }
 
 void CShape::SetType(SHAPE_TYPE const & type)
@@ -19,7 +19,7 @@ void CShape::SetType(SHAPE_TYPE const & type)
 void CShape::SetPosition(glm::fvec2 const & position)
 {
 	m_position = position;
-	Create();
+	TuneShape();
 }
 
 glm::fvec2 CShape::GetPosition() const
@@ -50,89 +50,213 @@ void CShape::Draw() const
 	}
 }
 
-void CShape::Create()
+void CShape::TuneShape()
 {
 	
 
 	switch (m_type)
 	{
 	case SHAPE_TYPE::first:
-		CreateFirstType();
+		TuneFirstType();
 		break;
 	case SHAPE_TYPE::second:
-		CreateSecondType();
+		TuneSecondType();
 		break;
 	case SHAPE_TYPE::third:
-		CreateThirdType();
+		TuneThirdType();
 		break;
 	case SHAPE_TYPE::fourth:
-		CreateFourthType();
+		TuneFourthType();
 		break;
 	case SHAPE_TYPE::fifth:
-		CreateFifthType();
+		TuneFifthType();
 		break;
 	case SHAPE_TYPE::sixth:
-		CreateSixthType();
+		TuneSixthType();
 		break;
 	case SHAPE_TYPE::seventh:
-		CreateSeventhType();
+		TuneSeventhType();
 		break;
 	}
 }
 
-void CShape::CreateFirstType()
+void CShape::Moves()
 {
-	m_components[0].Tune({ m_position.x, m_position.y}, SHAPE_SIZE, FIRST_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
-	m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 3, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+	m_isMoves = true;
 }
 
-void CShape::CreateSecondType()
+void CShape::ChangeSide()
 {
-	m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
-	m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+	switch (m_side)
+	{
+	case first:
+		m_side = second;
+		break;
+	case second:
+		m_side = third;
+		break;
+	case third:
+		m_side = fourth;
+		break;
+	case fourth:
+		m_side = first;
+		break;
+	}
+	TuneShape();
+}
+	
+void CShape::TuneFirstType()
+{
+	if (m_side == first || m_side == third) {
+		m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 3, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+	}
+	else 
+	{
+		m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height * 2 }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height * 3 }, SHAPE_SIZE, FIRST_SHAPE_COLOR);
+	}
+	
+}
+
+void CShape::TuneSecondType()
+{
+	switch(m_side)
+	{
+	case first:
+		m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		break;
+	case second:
+		m_components[0].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		break;
+	case third:
+		m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height  }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		break;
+	case fourth:
+		m_components[0].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, SECOND_SHAPE_COLOR);
+		break;
+	}
 
 }
 
-void CShape::CreateThirdType()
+void CShape::TuneThirdType()
 {
-	m_components[0].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, THIRD_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, THIRD_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, THIRD_SHAPE_COLOR);
-	m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+	switch (m_side)
+	{
+	case first:
+		m_components[0].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		break;
+	case second:
+		m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height * 2 }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		break;
+	case third:
+		m_components[0].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		break;
+	case fourth:
+		m_components[0].Tune({ m_position.x, m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, THIRD_SHAPE_COLOR);
+		break;
+	}
 }
 
-void CShape::CreateFourthType()
+void CShape::TuneFourthType()
 {
-	m_components[0].Tune({ m_position.x , m_position.y}, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y}, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
+	m_components[0].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
+	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
+	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
 	m_components[3].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FOURTH_SHAPE_COLOR);
 }
 
-void CShape::CreateFifthType()
+void CShape::TuneFifthType()
 {
-	m_components[0].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
-	m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y}, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+	if (m_side == first || m_side == third)
+	{
+		m_components[0].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+	}
+	else
+	{
+		m_components[0].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width , m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, FIFTH_SHAPE_COLOR);
+	}
 }
 
-void CShape::CreateSixthType()
+void CShape::TuneSixthType()
 {
-	m_components[0].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
-	m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+	switch(m_side)
+	{
+	case first:
+		m_components[0].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		break;
+	case second:
+		m_components[0].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height * 2 }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		break;
+	case third:
+		m_components[0].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		break;
+	case fourth:
+		m_components[0].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x , m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, SIXTH_SHAPE_COLOR);
+		break;
+	}	
 }
 
-void CShape::CreateSeventhType()
+void CShape::TuneSeventhType()
 {
-	m_components[0].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
-	m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
-	m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
-	m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height}, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+	if (m_side == first || m_side == third)
+	{
+		m_components[0].Tune({ m_position.x , m_position.y }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x + SHAPE_SIZE.width * 2, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+	}
+	else
+	{
+		m_components[0].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+		m_components[1].Tune({ m_position.x + SHAPE_SIZE.width, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+		m_components[2].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height }, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+		m_components[3].Tune({ m_position.x, m_position.y + SHAPE_SIZE.height * 2}, SHAPE_SIZE, SEVENTH_SHAPE_COLOR);
+	}
 }

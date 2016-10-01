@@ -13,13 +13,14 @@ CWindow::CWindow()
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
-	std::cout << "delta seconds = " << deltaSeconds << std::endl;
+	std::cout << "deltaSeconds = " << deltaSeconds << std::endl;
 	m_timer.SetDeltaTime(deltaSeconds);
 	if (m_timer.CheckForExcess(1.f))
 	{
 		m_controller.LowerShape();
 		m_timer.SetToZero();
 	}
+	m_controller.SetTime(deltaSeconds);
 }
 
 void CWindow::OnDrawWindow(const glm::ivec2 &size)
@@ -27,6 +28,15 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
     SetupView(size);
 	m_controller.Draw();
 	//m_shape.Draw();
+}
+
+void CWindow::OnDispatchEvent(SDL_Event const & event)
+{
+	if (m_controller.CheckTimer(0.1f))
+	{
+		sdl::DispatchEvent(event, m_controller);
+	}
+	
 }
 
 void CWindow::SetupView(const glm::ivec2 &size)
@@ -39,3 +49,5 @@ void CWindow::SetupView(const glm::ivec2 &size)
     glLoadMatrixf(glm::value_ptr(matrix));
     glMatrixMode(GL_MODELVIEW);
 }
+
+

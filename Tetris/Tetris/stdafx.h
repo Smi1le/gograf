@@ -26,4 +26,5 @@
 #include <algorithm>
 #include "Size.h"
 #include "Timer.h"
-#include "ShapeType.h"
+#include "Types.h"
+#include "Cell.h"

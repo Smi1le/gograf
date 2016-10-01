@@ -11,8 +11,15 @@ public:
 	void CreateNextShape(SHAPE_TYPE const &type);
 	void LowerShape();
 	void UpperShape();
+	void MoveShapeToLeft();
+	void MoveShapeToRight();
 	void AddShapeToPlayground();
+	void ShapeMove();
+	void SetTime(float dt);
+	void OnKeyDown();
+	void RotateShape();
 	std::vector<glm::fvec2> GetPositionsComponentsShape()const;
+
 private:
 	void DrawPlayground() const;
 
@@ -24,4 +31,5 @@ private:
 	std::unique_ptr<CShape> m_nextShape;
 	SHAPE_TYPE m_typeNextShape;
 	std::vector<std::vector<SCellView>> m_playground;
+	CTimer m_timer;
 };

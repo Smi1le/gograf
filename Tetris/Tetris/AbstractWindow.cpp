@@ -212,6 +212,7 @@ void CAbstractWindow::DoGameLoop()
         m_pImpl->Clear();
         const float deltaSeconds = chronometer.GrabDeltaTime();
         OnUpdateWindow(deltaSeconds);
+		OnDispatchEvent(event);
         OnDrawWindow(m_pImpl->GetWindowSize());
         m_pImpl->DumpGLErrors();
         m_pImpl->SwapBuffers();

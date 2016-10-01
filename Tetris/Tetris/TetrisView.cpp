@@ -3,13 +3,13 @@
 
 namespace
 {
-	const glm::fvec2 FIRST_POSITION = { 100.f, SHAPE_SIZE.height * 1 };
+	
 }
 
 CTetrisView::CTetrisView(SSize const & size)
 	:m_sizePlayground(size)
 {
-	m_positionPlayground = glm::fvec2(100.f, 0.f);
+	m_positionPlayground = glm::fvec2(LEFT_SIDE, 0.f);
 	m_playground.resize(20);
 	for (auto &cell : m_playground)
 	{
@@ -17,7 +17,7 @@ CTetrisView::CTetrisView(SSize const & size)
 	}
 	for (size_t i = 0; i != m_playground.size(); ++i)
 	{
-		glm::fvec2 position(100.f, SHAPE_SIZE.height * (m_playground.size() - i - 1));
+		glm::fvec2 position(LEFT_SIDE, SHAPE_SIZE.height * (m_playground.size() - i - 1));
 		for (size_t j = 0; j != m_playground[i].size(); ++j)
 		{
 			m_playground[i][j] = SCellView(position);
@@ -43,7 +43,7 @@ void CTetrisView::CreateShape(SHAPE_TYPE const & type)
 void CTetrisView::CreateNextShape(SHAPE_TYPE const & type)
 {
 	m_nextShape = std::make_unique<CShape>(type);
-	m_nextShape->SetPosition({ 100.f + SHAPE_SIZE.width * 10 + 40.f, 200.f });
+	m_nextShape->SetPosition({ LEFT_SIDE + SHAPE_SIZE.width * 10 + 40.f, 200.f });
 	m_shape->SetPosition(FIRST_POSITION);
 }
 
@@ -58,6 +58,18 @@ void CTetrisView::UpperShape()
 	auto position = m_shape->GetPosition();
 	m_shape->SetPosition({ position.x, position.y - SHAPE_SIZE.height });
 
+}
+
+void CTetrisView::MoveShapeToLeft()
+{
+	auto position = m_shape->GetPosition();
+	m_shape->SetPosition({ position.x - SHAPE_SIZE.width, position.y});
+}
+
+void CTetrisView::MoveShapeToRight()
+{
+	auto position = m_shape->GetPosition();
+	m_shape->SetPosition({ position.x + SHAPE_SIZE.width, position.y });
 }
 
 void CTetrisView::AddShapeToPlayground()
@@ -83,6 +95,30 @@ void CTetrisView::AddShapeToPlayground()
 		}
 	}
 	m_shape = std::move(m_nextShape);
+}
+
+void CTetrisView::ShapeMove()
+{
+	m_shape->Moves();
+}
+
+void CTetrisView::SetTime(float dt)
+{
+	m_timer.SetDeltaTime(dt);
+}
+
+void CTetrisView::OnKeyDown()
+{
+	if (m_timer.CheckForExcess(0.1f))
+	{
+		LowerShape();
+		m_timer.SetToZero();
+	}
+}
+
+void CTetrisView::RotateShape()
+{
+	m_shape->ChangeSide();
 }
 
 std::vector<glm::fvec2> CTetrisView::GetPositionsComponentsShape() const

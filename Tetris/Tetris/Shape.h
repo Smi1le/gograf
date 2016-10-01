@@ -15,18 +15,22 @@ public:
 	glm::fvec3 GetColor() const;
 	std::vector<glm::fvec2> GetPositionsComponents() const;
 	void Draw() const;
-	void Create();
+	void TuneShape();
+	void Moves();
+	void ChangeSide();
 private:
 	
-	void CreateFirstType();
-	void CreateSecondType();
-	void CreateThirdType();
-	void CreateFourthType();
-	void CreateFifthType();
-	void CreateSixthType();
-	void CreateSeventhType();
+	void TuneFirstType();
+	void TuneSecondType();
+	void TuneThirdType();
+	void TuneFourthType();
+	void TuneFifthType();
+	void TuneSixthType();
+	void TuneSeventhType();
 private:
 	SHAPE_TYPE m_type;
 	glm::fvec2 m_position;
 	std::vector<CRectangle> m_components;
+	bool m_isMoves;
+	SIDE m_side;
 };

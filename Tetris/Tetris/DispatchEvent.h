@@ -6,7 +6,7 @@ class IInputEventAcceptor;
 namespace sdl
 {
 // Совершает диспетчеризацию событий SDL по категориям.
-void DispatchEvent(const SDL_Event & event, IInputEventAcceptor & acceptor);
+void DispatchEvent(const SDL_Event & event, IInputEventAcceptor &acceptor);
 }
 
 // Принимает события SDL, разделённые по категориям.
@@ -16,11 +16,10 @@ class IInputEventAcceptor
 public:
     virtual ~IInputEventAcceptor() = default;
 
-    virtual void OnDragBegin(const glm::vec2 &pos) { (void)pos; }
-    virtual void OnDragMotion(const glm::vec2 &pos) { (void)pos; }
-    virtual void OnDragEnd(const glm::vec2 &pos) { (void)pos; }
-    virtual void OnKeyDown(const SDL_KeyboardEvent &) {}
-    virtual void OnKeyUp(const SDL_KeyboardEvent &) {}
+    virtual void OnKeyDown() {}
+    virtual void OnKeyUp() {}
+	virtual void OnKeyLeft() {}
+	virtual void OnKeyRight() {}
 };
 
 // Окно, совершающее диспетчеризацию событий SDL
