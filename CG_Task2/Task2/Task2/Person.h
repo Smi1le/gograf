@@ -23,5 +23,5 @@ private:
 	std::pair<std::unique_ptr<CEye>, std::unique_ptr<CEye>> m_pEyes;
 	std::unique_ptr<CEllipse> m_pBody;
 	std::unique_ptr<CEllipse> m_pNose;
-	std::unique_ptr<CMouth> m_pMouth;
+	std::unique_ptr<CMouth> m_pMouth; //TODO: убрать unique_ptr
 };

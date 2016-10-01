@@ -30,7 +30,7 @@ void CEye::SetPosition(glm::fvec2 const &position)
 
 void CEye::SetPositionPupil(glm::fvec2 const & position)
 {
-	m_pupil.SetPosition(position);
+	m_pupil.SetPosition(position);	
 }
 
 void const CEye::Draw()
