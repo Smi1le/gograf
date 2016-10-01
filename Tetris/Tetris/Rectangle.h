@@ -9,8 +9,10 @@ public:
 	void SetSize(SSize const &size);
 	void SetColor(glm::fvec3 const &color);
 	glm::fvec2 GetPosition() const;
+	glm::fvec3 GetColor() const;
 	SSize GetSize() const;
 	void Draw() const;
+	void Tune(glm::fvec2 const &position, SSize const &size, glm::fvec3 const &color);
 private:
 	glm::fvec2 m_position;
 	glm::fvec3 m_color;

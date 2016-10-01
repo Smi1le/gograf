@@ -116,16 +116,24 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TetrisController.cpp" />
+    <ClCompile Include="TetrisModel.cpp" />
+    <ClCompile Include="TetrisView.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="DispatchEvent.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeType.h" />
     <ClInclude Include="Size.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TetrisController.h" />
+    <ClInclude Include="TetrisModel.h" />
+    <ClInclude Include="TetrisView.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

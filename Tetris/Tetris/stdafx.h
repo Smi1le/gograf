@@ -21,7 +21,9 @@
 #include <mutex>
 #include <memory>
 #include <vector>
+#include <boost/random.hpp>
 #include <random>
 #include <algorithm>
 #include "Size.h"
+#include "Timer.h"
 #include "ShapeType.h"

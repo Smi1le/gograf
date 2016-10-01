@@ -9,19 +9,24 @@ const glm::vec4 QUIET_GREEN = {0.f, 0.5f, 0.2f, 1.f};
 CWindow::CWindow()
 {
     SetBackgroundColor(QUIET_GREEN);
-	m_shape.SetType(SHAPE_TYPE::first);
-	m_shape.SetPosition({ 250.f, 250.f });
-	m_shape.Create();
 }
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
+	std::cout << "delta seconds = " << deltaSeconds << std::endl;
+	m_timer.SetDeltaTime(deltaSeconds);
+	if (m_timer.CheckForExcess(1.f))
+	{
+		m_controller.LowerShape();
+		m_timer.SetToZero();
+	}
 }
 
 void CWindow::OnDrawWindow(const glm::ivec2 &size)
 {
     SetupView(size);
-	m_shape.Draw();
+	m_controller.Draw();
+	//m_shape.Draw();
 }
 
 void CWindow::SetupView(const glm::ivec2 &size)

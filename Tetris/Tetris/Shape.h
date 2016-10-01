@@ -12,6 +12,8 @@ public:
 	void SetType(SHAPE_TYPE const &type);
 	void SetPosition(glm::fvec2 const &position);
 	glm::fvec2 GetPosition() const;
+	glm::fvec3 GetColor() const;
+	std::vector<glm::fvec2> GetPositionsComponents() const;
 	void Draw() const;
 	void Create();
 private:
