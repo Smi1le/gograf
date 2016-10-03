@@ -63,9 +63,10 @@ CTetrisController::CTetrisController()
 
 void CTetrisController::Draw()
 {
-	m_view.Draw();
+	
 	if (m_isGameStart)
 	{
+		m_view.Draw();
 		if (m_isGameOver)
 		{
 			m_view.TextDraw(std::string("Game Over"), { 300.f, 300.f });
