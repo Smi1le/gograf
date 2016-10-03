@@ -9,7 +9,6 @@ namespace
 		{
 			if (side == 0 && pos.y == max)
 			{
-				std::cout << "maxY = " << std::endl;
 				return true;
 			}
 			else if (side == 1 && pos.x == max)
@@ -39,28 +38,52 @@ namespace
 	}
 }
 
-CTetrisController::CTetrisController()
-	:m_view(CTetrisView({ SHAPE_SIZE.width * 10, SHAPE_SIZE.height * 20 }))
-	, m_norm(boost::random::uniform_int_distribution<>(1, 7))
-	, m_isGameOver(false)
+void CTetrisController::KeyP() 
+{
+	m_isGamePause = !m_isGamePause;
+}
+void CTetrisController::StartGame()
 {
 	m_view.CreateShape(GetTypeNextShape());
 	m_view.CreateNextShape(GetTypeNextShape());
+	m_isGameStart = true;
+}
+
+CTetrisController::CTetrisController()
+	:m_view(CTetrisView({ SHAPE_SIZE.width * 10, SHAPE_SIZE.height * 20 }))
+	, m_isGameOver(false)
+{
+	std::random_device rd;
+	m_random.seed(rd());
+	
+	m_normalDistribution.param(0.0f, 7.5f);
+
 
 }
 
 void CTetrisController::Draw()
 {
 	m_view.Draw();
-	if (m_isGameOver)
+	if (m_isGameStart)
 	{
-
+		if (m_isGameOver)
+		{
+			m_view.TextDraw(std::string("Game Over"), { 300.f, 300.f });
+		}
+		if (m_isGamePause)
+		{
+			m_view.TextDraw(std::string("Game is pause"), { 300.f, 300.f });
+		}
+	}
+	else
+	{
+		m_view.TextDraw(std::string("PLEASE ENTER RIGHT CTRL FOR START GAME"), { 200.f, 300.f });
 	}
 }
 
 SHAPE_TYPE CTetrisController::GetTypeNextShape() const
 {
-	int number = m_norm(m_random);//m_randomGenerator();
+	int number = m_normalDistribution(m_random);//m_randomGenerator(); 
 	if (number == 1)
 	{
 		return SHAPE_TYPE::first;
@@ -93,7 +116,7 @@ SHAPE_TYPE CTetrisController::GetTypeNextShape() const
 
 void CTetrisController::LowerShape()
 {
-	if (!m_isGameOver)
+	if (!m_isGameOver && !m_isGamePause && m_isGameStart)
 	{
 		m_view.LowerShape();
 		auto shapePositions = m_view.GetPositionsComponentsShape();
@@ -105,7 +128,14 @@ void CTetrisController::LowerShape()
 			m_model.SetShape(shapePositions);
 			m_view.AddShapeToPlayground();
 			m_view.CreateNextShape(GetTypeNextShape());
-			if (isCollision(shapePositions, FIRST_POSITION.y))
+			if (m_model.CheckPlayground())
+			{
+				m_model.CleanPlayground();
+				m_view.CleanPlayground(m_model.GetListForDelete());
+				m_view.SetLevel(m_model.GetLevel());
+				m_view.SetScore(m_model.GetScore());
+			}
+			else if (isCollision(shapePositions, FIRST_POSITION.y))
 			{
 				m_isGameOver = true;
 			}
@@ -131,38 +161,50 @@ void CTetrisController::SetTime(float dt)
 
 void CTetrisController::KeyUp()
 {
-	std::cout << "up key" << std::endl;
-	m_view.RotateShape();
+	if (!m_isGameOver || !m_isGamePause)
+	{
+		m_view.RotateShape(ROTATE::right);
+		auto shapePositions = m_view.GetPositionsComponentsShape();
+		auto minXForShape = LEFT_SIDE - SHAPE_SIZE.width;
+		if (isCollision(shapePositions, minXForShape, 1) || isCollision(shapePositions, m_model.GetDataPlayground())
+			|| isCollision(shapePositions, LEFT_SIDE + SHAPE_SIZE.width * 10, 1))
+		{
+			m_view.RotateShape(ROTATE::left);
+		}
+	}
 }
 
 void CTetrisController::KeyDown()
 {
-	std::cout << "down key" << std::endl;
 	LowerShape();
 }
 
 void CTetrisController::KeyLeft()
 {
-	m_view.MoveShapeToLeft();
-	auto shapePositions = m_view.GetPositionsComponentsShape();
-	auto minXForShape = LEFT_SIDE - SHAPE_SIZE.width;
-	if (isCollision(shapePositions, minXForShape, 1) || isCollision(shapePositions, m_model.GetDataPlayground()))
+	if (!m_isGameOver || !m_isGamePause)
 	{
-		m_view.MoveShapeToRight();
-		std::cout << "left " << std::endl;
+		m_view.MoveShapeToLeft();
+		auto shapePositions = m_view.GetPositionsComponentsShape();
+		auto minXForShape = LEFT_SIDE - SHAPE_SIZE.width;
+		if (isCollision(shapePositions, minXForShape, 1) || isCollision(shapePositions, m_model.GetDataPlayground())
+			|| isCollision(shapePositions, LEFT_SIDE + SHAPE_SIZE.width * 10, 1))
+		{
+			m_view.MoveShapeToRight();
+		}
 	}
-	std::cout << "left key" << std::endl;
 }
 
 void CTetrisController::KeyRight()
 {
-	m_view.MoveShapeToRight();
-	auto shapePositions = m_view.GetPositionsComponentsShape();
-	auto minXForShape = LEFT_SIDE + SHAPE_SIZE.width * 10;
-	if (isCollision(shapePositions, minXForShape, 1) || isCollision(shapePositions, m_model.GetDataPlayground()))
+	if (!m_isGameOver || !m_isGamePause)
 	{
-		m_view.MoveShapeToLeft();
-		std::cout << "right " << std::endl;
+		m_view.MoveShapeToRight();
+		auto shapePositions = m_view.GetPositionsComponentsShape();
+		auto minXForShape = LEFT_SIDE + SHAPE_SIZE.width * 10;
+		if (isCollision(shapePositions, minXForShape, 1) || isCollision(shapePositions, m_model.GetDataPlayground()))
+			//|| isCollision(shapePositions, LEFT_SIDE + SHAPE_SIZE.width * 10, 1))
+		{
+			m_view.MoveShapeToLeft();
+		}
 	}
-	std::cout << "right key" << std::endl;
 }

@@ -33,6 +33,12 @@ void sdl::DispatchEvent(const SDL_Event &event, IInputEventAcceptor &acceptor)
 			case SDLK_RIGHT:
 				acceptor.OnKeyRight();
 				break;
+			case SDLK_HOME:
+				acceptor.OnKeyP();
+				break;
+			case SDLK_RCTRL:
+				acceptor.OnKeySpace();
+				break;
 		}
 	break;
     }

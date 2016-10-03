@@ -20,6 +20,8 @@ public:
     virtual void OnKeyUp() {}
 	virtual void OnKeyLeft() {}
 	virtual void OnKeyRight() {}
+	virtual void OnKeyP() {}
+	virtual void OnKeySpace() {}
 };
 
 // Окно, совершающее диспетчеризацию событий SDL

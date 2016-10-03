@@ -22,6 +22,14 @@ enum SIDE
 	fourth
 };
 
+enum class ROTATE
+{
+	left,
+	right
+};
+
+
+
 namespace
 {
 	const float LEFT_SIDE = 100.f;

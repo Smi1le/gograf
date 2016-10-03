@@ -13,9 +13,9 @@ CWindow::CWindow()
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
-	std::cout << "deltaSeconds = " << deltaSeconds << std::endl;
+	//std::cout << "deltaSeconds = " << deltaSeconds << std::endl;
 	m_timer.SetDeltaTime(deltaSeconds);
-	if (m_timer.CheckForExcess(1.f))
+	if (m_timer.CheckForExcess(0.5f))
 	{
 		m_controller.LowerShape();
 		m_timer.SetToZero();

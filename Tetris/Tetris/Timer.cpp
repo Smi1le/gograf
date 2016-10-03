@@ -16,11 +16,7 @@ float CTimer::GetTime() const
 
 bool CTimer::CheckForExcess(float excess)
 {
-	if (!m_isStart)
-	{
-		m_isStart = m_time > 1.5f;
-	}
-	return m_isStart && m_time > excess;
+	return m_time > excess;
 }
 
 void CTimer::SetToZero()

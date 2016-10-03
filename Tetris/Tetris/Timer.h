@@ -14,21 +14,34 @@ private:
 };
 
 
-class CGenerator {
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution;
-	int min;
-	int max;
+class CClampedNormalDistribution
+{
+	std::normal_distribution<float> m_distribution;
+	float m_min = 0.f;
+	float m_max = 0.f;
 public:
-	CGenerator(int mean, int stddev, int min, int max) :
-		distribution(mean, stddev), min(min), max(max)
-	{}
+	// m_distribution требует два параметра:
+	// `mean`, т.е. медианное значение и одновременно мат. ожидание
+	// `stddev`, т.е. стандартное отклонение (дисперсию)
+	// мы выводим эти параметры из min/max.
+	void param(float min, float max)
+	{
+		using param_type = std::normal_distribution<float>::param_type;
+		const float mean = (min + max) / 2.f;
+		const float stddev = (max - min) / 6.f;
+		m_distribution.param(param_type(mean, stddev));
+		m_min = min;
+		m_max = max;
+	}
 
-	int operator ()() {
+	// Ќормальное распределение выдаЄт значени€ на всЄм диапазоне float
+	// Ќо мы режем значени€, выпадающие из диапазона [min, max]
+	// —татистически, будет выброшено около 0.3% значений.
+	int operator ()(std::mt19937 &random) {
 		while (true) {
-			int number = this->distribution(generator);
-			if (number >= this->min && number <= this->max)
-				return number;
+			float number = m_distribution(random);
+			if (number >= m_min && number <= m_max)
+				return (int)number;
 		}
 	}
 };

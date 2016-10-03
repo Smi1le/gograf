@@ -2,16 +2,18 @@
 #include "AbstractWindow.h"
 #include <SDL2/SDL_video.h>
 
+using namespace std::chrono;
+
 namespace
 {
-const char WINDOW_TITLE[] = "SDL2/OpenGL Demo";
+const char WINDOW_TITLE[] = "Tetris HOME - Pause Arrows";
 std::once_flag g_glewInitOnceFlag;
 
 // Используем unique_ptr с явно заданной функцией удаления вместо delete.
 using SDLWindowPtr = std::unique_ptr<SDL_Window, void(*)(SDL_Window*)>;
 using SDLGLContextPtr = std::unique_ptr<void, void(*)(SDL_GLContext)>;
 
-class CChronometer
+/*class CChronometer //TODO : 5 пример поправить
 {
 public:
     CChronometer()
@@ -29,7 +31,26 @@ public:
 
 private:
     std::chrono::system_clock::time_point m_lastTime;
+};*/
+}
+
+CChronometer::CChronometer()
+	: m_lastTime(system_clock::now())
+{
+}
+
+float CChronometer::GrabDeltaTime()
+{
+	auto newTime = system_clock::now();
+	auto timePassed = duration_cast<milliseconds>(newTime - m_lastTime);
+	m_lastTime = newTime;
+	return 0.001f * float(timePassed.count());
 };
+
+void CChronometer::WaitNextFrameTime(const std::chrono::milliseconds &framePeriod)
+{
+	system_clock::time_point nextFrameTime = m_lastTime + framePeriod;
+	std::this_thread::sleep_until(nextFrameTime);
 }
 
 class CAbstractWindow::Impl
@@ -193,6 +214,7 @@ void CAbstractWindow::Show(const glm::ivec2 &size)
 
 void CAbstractWindow::DoGameLoop()
 {
+	const std::chrono::milliseconds FRAME_PERIOD(16);
     SDL_Event event;
     CChronometer chronometer;
     while (true)
@@ -216,6 +238,7 @@ void CAbstractWindow::DoGameLoop()
         OnDrawWindow(m_pImpl->GetWindowSize());
         m_pImpl->DumpGLErrors();
         m_pImpl->SwapBuffers();
+		chronometer.WaitNextFrameTime(FRAME_PERIOD);
     }
 }
 
