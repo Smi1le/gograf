@@ -8,11 +8,7 @@ namespace
 	const glm::vec4 YELLOW = { 1.f, 1.f, 0.f, 0.5f };
 	const glm::vec4 BLACK = { 0.f, 0.f, 0.f, 1.f};
 	const glm::vec4 LIGHT_YELLOW_RGBA = { 1.f, 1.f, 0.5f, 1.f };
-	const glm::vec4 ORANGE = { 1.f, 0.5f, 0.f, 0.5f };
-	const glm::vec4 PINK = { 1.f, 0.3f, 0.3f, 0.5f };
 	const glm::vec4 GREEN = { 0.f, 1.f, 0.f, 0.5f };
-	const glm::vec4 BLUE = { 0.09f, 0.9f, 0.86f, 0.5f };
-	const glm::vec4 RED = { 1.f, 0.f, 0.f, 0.5f };
 	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
 	const glm::vec3 SUNLIGHT_DIRECTION = { 0.7f, 0.7f, 1.f };
 	const float CAMERA_INITIAL_ROTATION = 0;
@@ -41,22 +37,13 @@ CWindow::CWindow()
 {
 	SetBackgroundColor(BLACK);
 
-	m_staticCube.SetFaceColor(ShapeFace::pentagon, YELLOW);
-	m_staticCube.SetFaceColor(ShapeFace::triangle, GREEN);
-
-	/*m_dynamicCube.SetFaceColor(CubeFace::Top, YELLOW);
-	m_dynamicCube.SetFaceColor(CubeFace::Bottom, YELLOW);
-	m_dynamicCube.SetFaceColor(CubeFace::Left, ORANGE);
-	m_dynamicCube.SetFaceColor(CubeFace::Right, ORANGE);
-	m_dynamicCube.SetFaceColor(CubeFace::Front, PINK);
-	m_dynamicCube.SetFaceColor(CubeFace::Back, PINK);*/
+	m_dynamicCube.SetFaceColor(ShapeFace::pentagon, YELLOW);
+	m_dynamicCube.SetFaceColor(ShapeFace::triangle, GREEN);
+	m_dynamicCube.SetScale(2.f);
 
 	m_sunlight.SetDirection(SUNLIGHT_DIRECTION);
 	m_sunlight.SetDiffuse(WHITE_RGBA);
 	m_sunlight.SetAmbient(0.1f * WHITE_RGBA);
-	// Из-за интерполяции освещения по Гуро
-	// смысл Specular компоненты для куба теряется.
-	// m_sunlight.SetSpecular(WHITE_LIGHT);
 }
 
 void CWindow::OnWindowInit(const glm::ivec2 &size)
@@ -69,7 +56,7 @@ void CWindow::OnUpdateWindow(float deltaSeconds)
 {
 	m_camera.Update(deltaSeconds);
 	m_dynamicCube.Update(deltaSeconds);
-	m_staticCube.Update(deltaSeconds);
+	//m_staticCube.Update(deltaSeconds);
 }
 
 void CWindow::OnDrawWindow(const glm::ivec2 &size)
@@ -80,15 +67,15 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 	// Смещаем анимированный единичный куб в другую сторону
 	glPushMatrix();
-	glTranslatef(-1.5f, 0, 0);
+	//glTranslatef(-1.5f, 0, 0);
 	m_dynamicCube.Draw();
 	glPopMatrix();
 
 	// Смещаем статический единичный куб в другую сторону
-	glPushMatrix();
+	/*glPushMatrix();
 	glTranslatef(1.5f, 0, 0);
 	m_staticCube.Draw();
-	glPopMatrix();
+	glPopMatrix();*/
 }
 
 void CWindow::SetupView(const glm::ivec2 &size)

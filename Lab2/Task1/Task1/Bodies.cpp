@@ -7,22 +7,6 @@ namespace
 
 typedef glm::vec3 Vertex;
 
-const glm::vec4 DARK_BLUE = {0.05f, 0.1f, 0.5f, 0.5f};
-const glm::vec4 LIGHT_RED = {0.8f, 0.1f, 0.15f, 0.5f};
-
-// Вершины куба служат материалом для формирования треугольников,
-// составляющих грани куба.
-/*const Vertex CUBE_VERTICIES[] = {
-    {-1, +1, -1},
-    {+1, +1, -1},
-    {+1, -1, -1},
-    {-1, -1, -1},
-    {-1, +1, +1},
-    {+1, +1, +1},
-    {+1, -1, +1},
-    {-1, -1, +1},
-};*/
-
 struct STriangleFace
 {
 	uint16_t vertexIndex1;
@@ -31,23 +15,6 @@ struct STriangleFace
 	uint16_t colorIndex;
 };
 
-// Привыкаем использовать 16-битный unsigned short,
-// чтобы экономить память на фигурах с тысячами вершин.
-/*const STriangleFace CUBE_FACES[] = {
-	{ 0, 1, 2, static_cast<uint16_t>(CubeFace::Back) },
-	{ 0, 2, 3, static_cast<uint16_t>(CubeFace::Back) },
-	{ 2, 1, 5, static_cast<uint16_t>(CubeFace::Right) },
-	{ 2, 5, 6, static_cast<uint16_t>(CubeFace::Right) },
-	{ 3, 2, 6, static_cast<uint16_t>(CubeFace::Bottom) },
-	{ 3, 6, 7, static_cast<uint16_t>(CubeFace::Bottom) },
-	{ 0, 3, 7, static_cast<uint16_t>(CubeFace::Left) },
-	{ 0, 7, 4, static_cast<uint16_t>(CubeFace::Left) },
-	{ 1, 0, 4, static_cast<uint16_t>(CubeFace::Top) },
-	{ 1, 4, 5, static_cast<uint16_t>(CubeFace::Top) },
-	{ 6, 5, 4, static_cast<uint16_t>(CubeFace::Front) },
-	{ 6, 4, 7, static_cast<uint16_t>(CubeFace::Front) },
-};
-*/
 const Vertex CUBE_VERTICIES[] = {
 	{0.408f, -0.371f, 0.597f},
 	{-0.146f, -0.733f, 0.321f},
@@ -245,12 +212,32 @@ const STriangleFace CUBE_FACES[] = {
 { 30, 55, 6, static_cast<uint16_t>(ShapeFace::triangle) }
 };
 
-/*const uint16_t EDGES_CUBE_FACES[] = {
-	0, 1, 5, 4,
-	0, 3, 2, 6,
-	7, 3, 2, 1,
-	5, 6, 7, 4,
-};*/
+const uint16_t EDGES_SHAPE_FACES[] = {
+	42,49,47,50,17,47,42,46,
+	49,3,46,59,45,41,39,45,
+	46,3,11,39,58,41,58,8,
+	41,7,59,24,7,45,7,22,
+	24,21,9,17,57,9,21,57,
+	47,57,42,59,24,29,22,25,
+	8,40,56,8,25,26,29,21,
+	20,9,28,6,5,17,50,5,
+	18,6,30,55,6,28,55,53,
+	28,20,53,52,26,23,25,56,
+	23,52,54,53,55,54,27,52,
+	23,27,19,33,56,40,33,34,
+	19,32,31,27,19,31,54,31,
+	44,30,4,44,32,34,37,51,
+	34,33,51,40,58,48,39,11,
+	48,36,35,48,35,51,37,35,
+	10,37,38,43,32,44,43,4,
+	38,18,4,12,43,38,12,16,
+	38,10,36,11,13,3,0,49,
+	0,14,50,5,1,50,1,18,
+	2,12,16,2,14,1,14,15,
+	0,13,36,10,16,15,2,15,
+	13,36,10,37,34,19,27,52,
+	26,29,20
+};
 
 /// @param phase - Фаза анимации на отрезке [0..1]
 glm::mat4 GetRotateZTransfrom(float phase)
@@ -299,6 +286,7 @@ glm::mat4 GetBounceTransform(float phase)
 }
 
 CIdentityCube::CIdentityCube()
+	:m_scale(1.f)
 {
 	// Используем белый цвет по умолчанию.
 	for (glm::vec4 &color : m_colors)
@@ -319,19 +307,21 @@ void CIdentityCube::Draw() const
 {
 	
 	//glEnable(GL_DEPTH_TEST);
-	/*glDepthMask(GL_TRUE);
+	glDepthMask(GL_TRUE);
 	glLineWidth(2.f);
 	glBegin(GL_LINE_LOOP);
-	for (uint16_t i : EDGES_CUBE_FACES)
+	for (uint16_t i : EDGES_SHAPE_FACES)
 	{
 		const Vertex &v = CUBE_VERTICIES[i];
+		Vertex vv = { v.x * m_scale, v.y * m_scale, v.z * m_scale };
 		glColor4f(1.f, 1.f, 1.f, 1.f);
-		glVertex3f(v.x, v.y, v.z);
+		glVertex3f(vv.x, vv.y, vv.z);
 	}
 	glEnd();
 
-	glDepthMask(GL_FALSE);*/
+	glDepthMask(GL_FALSE);
 	//glDisable(GL_DEPTH_TEST);
+	
 
     // менее оптимальный способ рисования: прямая отправка данных
     // могла бы работать быстрее, чем множество вызовов glColor/glVertex.
@@ -348,17 +338,17 @@ void CIdentityCube::Draw() const
 		const Vertex &v1 = CUBE_VERTICIES[face.vertexIndex1];
 		const Vertex &v2 = CUBE_VERTICIES[face.vertexIndex2];
 		const Vertex &v3 = CUBE_VERTICIES[face.vertexIndex3];
-		if (v1.x > 1 || v1.y > 1 || v1.z > 1 || v1.x < -1 || v1.y < -1 || v1.z < -1)
-		{
-			std::cout << "face.vertexIndex1 = " << face.vertexIndex1 << std::endl;
-		}
-		glm::vec3 normal = glm::normalize(glm::cross(v2 - v1, v3 - v1));
+		Vertex vv1 = { v1.x * m_scale, v1.y * m_scale, v1.z * m_scale };
+		Vertex vv2 = { v2.x * m_scale, v2.y * m_scale, v2.z * m_scale };
+		Vertex vv3 = { v3.x * m_scale, v3.y * m_scale, v3.z * m_scale };
+
+		glm::vec3 normal = glm::normalize(glm::cross(vv2 - vv1, vv3 - vv1));
 
 		glColor4fv(glm::value_ptr(m_colors[face.colorIndex]));
 		glNormal3fv(glm::value_ptr(normal));
-		glVertex3fv(glm::value_ptr(v1));
-		glVertex3fv(glm::value_ptr(v2));
-		glVertex3fv(glm::value_ptr(v3));
+		glVertex3fv(glm::value_ptr(vv1));
+		glVertex3fv(glm::value_ptr(vv2));
+		glVertex3fv(glm::value_ptr(vv3));
 	}
 	glEnd();
 	
@@ -370,16 +360,47 @@ void CIdentityCube::Draw() const
 		const Vertex &v1 = CUBE_VERTICIES[face.vertexIndex1];
 		const Vertex &v2 = CUBE_VERTICIES[face.vertexIndex2];
 		const Vertex &v3 = CUBE_VERTICIES[face.vertexIndex3];
-		glm::vec3 normal = glm::normalize(glm::cross(v2 - v1, v3 - v1));
+		Vertex vv1 = { v1.x * m_scale, v1.y * m_scale, v1.z * m_scale };
+		Vertex vv2 = { v2.x * m_scale, v2.y * m_scale, v2.z * m_scale };
+		Vertex vv3 = { v3.x * m_scale, v3.y * m_scale, v3.z * m_scale };
+
+		glm::vec3 normal = glm::normalize(glm::cross(vv2 - vv1, vv3 - vv1));
 
 		glColor4fv(glm::value_ptr(m_colors[face.colorIndex]));
 		glNormal3fv(glm::value_ptr(normal));
-		glVertex3fv(glm::value_ptr(v1));
-		glVertex3fv(glm::value_ptr(v2));
-		glVertex3fv(glm::value_ptr(v3));
+		glVertex3fv(glm::value_ptr(vv1));
+		glVertex3fv(glm::value_ptr(vv2));
+		glVertex3fv(glm::value_ptr(vv3));
 	}
 	glEnd();
 	glDisable(GL_BLEND);
+	
+	/*glLineWidth(2.f);
+	glBegin(GL_LINE_LOOP);
+
+	for (const STriangleFace &face : CUBE_FACES)
+	{
+		const Vertex &v1 = CUBE_VERTICIES[face.vertexIndex1];
+		const Vertex &v2 = CUBE_VERTICIES[face.vertexIndex2];
+		const Vertex &v3 = CUBE_VERTICIES[face.vertexIndex3];
+		Vertex vv1 = { v1.x * m_scale, v1.y * m_scale, v1.z * m_scale };
+		Vertex vv2 = { v2.x * m_scale, v2.y * m_scale, v2.z * m_scale };
+		Vertex vv3 = { v3.x * m_scale, v3.y * m_scale, v3.z * m_scale };
+
+		glm::vec3 normal = glm::normalize(glm::cross(vv2 - vv1, vv3 - vv1));
+
+		glColor4fv(glm::value_ptr(m_colors[face.colorIndex]));
+		glNormal3fv(glm::value_ptr(normal));
+		glVertex3fv(glm::value_ptr(vv1));
+		glVertex3fv(glm::value_ptr(vv2));
+		glVertex3fv(glm::value_ptr(vv3));
+	}
+	glEnd();*/
+}
+
+void CIdentityCube::SetScale(float scale)
+{
+	m_scale = scale;
 }
 
 void CIdentityCube::SetFaceColor(ShapeFace face, const glm::vec4 &color)

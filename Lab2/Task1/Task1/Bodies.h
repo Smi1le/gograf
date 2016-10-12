@@ -20,7 +20,10 @@ public:
 	void Update(float deltaTime);
 	void Draw()const;
 
+	void SetScale(float scale);
 	void SetFaceColor(ShapeFace face, const glm::vec4 &color);
+protected:
+	float m_scale;
 
 private:
 	static const size_t COLORS_COUNT = static_cast<size_t>(ShapeFace::NumFaces);
@@ -46,4 +49,5 @@ private:
     static const float ANIMATION_STEP_SECONDS;
     Animation m_animation = Rotating;
     float m_animationPhase = 0;
+	
 };

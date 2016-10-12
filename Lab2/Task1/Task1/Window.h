@@ -24,7 +24,7 @@ private:
 	void SetupFog();
 
 	CAnimatedCube m_dynamicCube;
-	CIdentityCube m_staticCube;
+	//CIdentityCube m_staticCube;
 	CCamera m_camera;
 	CDirectedLightSource m_sunlight;
 	bool m_isFogEnabled = true;
