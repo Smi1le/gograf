@@ -25,7 +25,7 @@ void SetupOpenGLState()
 
 CWindowClient::CWindowClient(CWindow &window)
     : CAbstractWindowClient(window)
-    , m_sphereObj(SPHERE_PRECISION, SPHERE_PRECISION)
+    , m_kannabolaObj()
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
     , m_programFixed(CShaderProgram::fixed_pipeline_t())
@@ -45,10 +45,10 @@ CWindowClient::CWindowClient(CWindow &window)
     m_sunlight.SetAmbient(0.1f * WHITE_RGBA);
     m_sunlight.SetSpecular(WHITE_RGBA);
 
-    m_sphereMat.SetShininess(30);
-    m_sphereMat.SetSpecular(WHITE_RGBA);
-    m_sphereMat.SetDiffuse(GREEN_RGBA);
-    m_sphereMat.SetAmbient(GREEN_RGBA * AMBIENT_SCALE);
+    m_kannabolaMat.SetShininess(30);
+	m_kannabolaMat.SetSpecular(WHITE_RGBA);
+	m_kannabolaMat.SetDiffuse(GREEN_RGBA);
+	m_kannabolaMat.SetAmbient(GREEN_RGBA * AMBIENT_SCALE);
 
     const std::string vertexShader = CFilesystemUtils::LoadFileAsString("res/lambert-phong.vert");
     const std::string lambertShader = CFilesystemUtils::LoadFileAsString("res/lambert.frag");
@@ -75,11 +75,11 @@ void CWindowClient::OnDrawWindow()
     SetupView(GetWindow().GetWindowSize());
 
     m_sunlight.Setup();
-    m_sphereMat.Setup();
+	m_kannabolaMat.Setup();
 
     // Активной будет первая программа из очереди.
     m_programQueue.front()->Use();
-    m_sphereObj.Draw();
+    m_kannabolaObj.Draw();
 }
 
 void CWindowClient::OnKeyDown(const SDL_KeyboardEvent &event)
@@ -104,11 +104,11 @@ void CWindowClient::OnKeyUp(const SDL_KeyboardEvent &event)
     }
 	else if (event.keysym.sym == SDLK_RCTRL)
 	{
-		m_sphereObj.ChangePolygonDrawMode();
+		m_kannabolaObj.ChangePolygonDrawMode();
 	}
 	else if (event.keysym.sym == SDLK_RSHIFT)
 	{
-		m_sphereObj.ChangeCalculateMode();
+		m_kannabolaObj.ChangeCalculateMode();
 	}
 }
 

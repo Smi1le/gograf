@@ -14,7 +14,7 @@ int main(int, char *[])
 	try
 	{
 		CWindow window;
-		window.Show("Demo #13: Smooth Phong Shading", { 800, 600 });
+		window.Show("Kannabola SPACE or RCTRL or RShift", { 800, 600 });
 		CWindowClient client(window);
 		window.DoMainLoop();
 	}

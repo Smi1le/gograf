@@ -69,11 +69,11 @@
     <ClInclude Include="src\FilesystemUtils.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="IdentitySphere.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="src\VertexAttribute.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,9 +81,6 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="kannabola.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="IdentitySphere.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="WindowClient.cpp">
@@ -121,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="src\VertexAttribute.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

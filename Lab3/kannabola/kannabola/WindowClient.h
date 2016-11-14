@@ -1,6 +1,6 @@
 #pragma once
 #include "libchapter3.h"
-#include "IdentitySphere.h"
+#include "Shape.h"
 #include <vector>
 
 class CWindowClient : public CAbstractWindowClient
@@ -19,8 +19,8 @@ private:
     void CheckOpenGLVersion();
     void SetupView(const glm::ivec2 &size);
 
-    CIdentitySphere m_sphereObj;
-    CPhongModelMaterial m_sphereMat;
+	CKannabola m_kannabolaObj;
+    CPhongModelMaterial m_kannabolaMat;
     CCamera m_camera;
     CDirectedLightSource m_sunlight;
     CShaderProgram m_programPhong;
