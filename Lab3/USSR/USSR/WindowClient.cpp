@@ -26,8 +26,8 @@ CWindowClient::CWindowClient(CWindow &window)
     SetupOpenGLState();
 
     const std::string vertexShader = CFilesystemUtils::LoadFileAsString("res/copytexture.vert");
-    const std::string checkersShader = CFilesystemUtils::LoadFileAsString("res/checkers.frag");
-    const std::string pictureShader = CFilesystemUtils::LoadFileAsString("res/checkers-and-triangle.frag");
+    const std::string checkersShader = CFilesystemUtils::LoadFileAsString("res/Ring.frag");
+    const std::string pictureShader = CFilesystemUtils::LoadFileAsString("res/USSR-Flag.frag");
 
     m_programCheckers.CompileShader(vertexShader, ShaderType::Vertex);
     m_programCheckers.CompileShader(checkersShader, ShaderType::Fragment);
