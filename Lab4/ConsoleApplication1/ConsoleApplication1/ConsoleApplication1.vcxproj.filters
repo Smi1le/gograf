@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{ef5bae0a-a435-415c-8c9f-a95eff573b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs\libshading">
+      <UniqueIdentifier>{ea7de59f-ee9e-4223-b21c-4558b29aa28b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs\libscene">
+      <UniqueIdentifier>{d826aa8a-02e1-4228-808e-df3068c694a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs\libsystem">
+      <UniqueIdentifier>{8ad6875a-4bb9-442c-a558-214ff237efbf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongProgram.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLoader.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowClient.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libshading\AbstractProgramAdapter.h">
+      <Filter>Libs\libshading</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libshading\IProgramAdapter.h">
+      <Filter>Libs\libshading</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libshading\ProgramInfo.h">
+      <Filter>Libs\libshading</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libshading\ProgramUniform.h">
+      <Filter>Libs\libshading</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libshading\ShaderProgram.h">
+      <Filter>Libs\libshading</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libshading\VertexAttribute.h">
+      <Filter>Libs\libshading</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\ArrayObject.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\AssetLoader.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\AssimpUtils.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\BufferObject.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\Camera.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\DrawUtils.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\Geometry.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\ParticleEmitter.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\ParticleSystem.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\SkeletalAnimator.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\SkeletalModel3D.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\SkeletalModel3DRenderer.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\SkeletalModelLoader.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\StaticModel3D.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\StaticModel3DRenderer.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\StaticModelLoader.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\Tesselator.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libscene\Texture2D.h">
+      <Filter>Libs\libscene</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libsystem\AbstractWindowClient.h">
+      <Filter>Libs\libsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libsystem\IInputListener.h">
+      <Filter>Libs\libsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libsystem\MouseGrabber.h">
+      <Filter>Libs\libsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libsystem\PlatformFeatures.h">
+      <Filter>Libs\libsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libsystem\Utils.h">
+      <Filter>Libs\libsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libsystem\Window.h">
+      <Filter>Libs\libsystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleApplication1.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="PhongProgram.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLoader.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowClient.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libshading\AbstractProgramAdapter.cpp">
+      <Filter>Libs\libshading</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libshading\ProgramInfo.cpp">
+      <Filter>Libs\libshading</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libshading\ProgramUniform.cpp">
+      <Filter>Libs\libshading</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libshading\ShaderProgram.cpp">
+      <Filter>Libs\libshading</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libshading\VertexAttribute.cpp">
+      <Filter>Libs\libshading</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\ArrayObject.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\AssetLoader.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\AssimpUtils.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\BufferObject.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\Camera.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\DrawUtils.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\ParticleEmitter.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\ParticleSystem.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\SkeletalAnimator.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\SkeletalModel3DRenderer.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\SkeletalModelLoader.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\StaticModel3DRenderer.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\StaticModelLoader.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\Tesselator.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libscene\Texture2D.cpp">
+      <Filter>Libs\libscene</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libsystem\AbstractWindowClient.cpp">
+      <Filter>Libs\libsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libsystem\MouseGrabber.cpp">
+      <Filter>Libs\libsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libsystem\PlatformFeatures.cpp">
+      <Filter>Libs\libsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libsystem\Utils.cpp">
+      <Filter>Libs\libsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libsystem\Window.cpp">
+      <Filter>Libs\libsystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

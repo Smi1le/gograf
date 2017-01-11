@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{80FCD9E1-44E0-40AF-B068-E1A0CA85F11E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>F:\PP\Task4\ConsoleApplication1\ConsoleApplication1\libs;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\gograf\Lab4\Task1\x64\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>F:\PP\Task4\ConsoleApplication1\ConsoleApplication1\libs;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\gograf\Lab4\Task1\x64\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>F:\PP\Task4\ConsoleApplication1\ConsoleApplication1\libs;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\gograf\Lab4\Task1\x64\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>F:\PP\Task4\ConsoleApplication1\ConsoleApplication1\libs;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\gograf\Lab4\Task1\x64\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libshading.lib;libscene.lib;libgeometry.lib;libanax.lib;libsystem.lib;assimp-vc140-mt.lib;libcommons.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libshading.lib;libscene.lib;libgeometry.lib;libanax.lib;libsystem.lib;assimp-vc140-mt.lib;libcommons.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libshading.lib;libscene.lib;libgeometry.lib;libanax.lib;libsystem.lib;assimp-vc140-mt.lib;libcommons.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libshading.lib;libscene.lib;libgeometry.lib;libanax.lib;libsystem.lib;assimp-vc140-mt.lib;libcommons.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Components.h" />
+    <ClInclude Include="libs\libscene\ArrayObject.h" />
+    <ClInclude Include="libs\libscene\AssetLoader.h" />
+    <ClInclude Include="libs\libscene\AssimpUtils.h" />
+    <ClInclude Include="libs\libscene\BufferObject.h" />
+    <ClInclude Include="libs\libscene\Camera.h" />
+    <ClInclude Include="libs\libscene\DrawUtils.h" />
+    <ClInclude Include="libs\libscene\Geometry.h" />
+    <ClInclude Include="libs\libscene\ParticleEmitter.h" />
+    <ClInclude Include="libs\libscene\ParticleSystem.h" />
+    <ClInclude Include="libs\libscene\SkeletalAnimator.h" />
+    <ClInclude Include="libs\libscene\SkeletalModel3D.h" />
+    <ClInclude Include="libs\libscene\SkeletalModel3DRenderer.h" />
+    <ClInclude Include="libs\libscene\SkeletalModelLoader.h" />
+    <ClInclude Include="libs\libscene\StaticModel3D.h" />
+    <ClInclude Include="libs\libscene\StaticModel3DRenderer.h" />
+    <ClInclude Include="libs\libscene\StaticModelLoader.h" />
+    <ClInclude Include="libs\libscene\Tesselator.h" />
+    <ClInclude Include="libs\libscene\Texture2D.h" />
+    <ClInclude Include="libs\libshading\AbstractProgramAdapter.h" />
+    <ClInclude Include="libs\libshading\IProgramAdapter.h" />
+    <ClInclude Include="libs\libshading\ProgramInfo.h" />
+    <ClInclude Include="libs\libshading\ProgramUniform.h" />
+    <ClInclude Include="libs\libshading\ShaderProgram.h" />
+    <ClInclude Include="libs\libshading\VertexAttribute.h" />
+    <ClInclude Include="libs\libsystem\AbstractWindowClient.h" />
+    <ClInclude Include="libs\libsystem\IInputListener.h" />
+    <ClInclude Include="libs\libsystem\MouseGrabber.h" />
+    <ClInclude Include="libs\libsystem\PlatformFeatures.h" />
+    <ClInclude Include="libs\libsystem\Utils.h" />
+    <ClInclude Include="libs\libsystem\Window.h" />
+    <ClInclude Include="PhongProgram.h" />
+    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="SceneLoader.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="WindowClient.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="libs\libscene\ArrayObject.cpp" />
+    <ClCompile Include="libs\libscene\AssetLoader.cpp" />
+    <ClCompile Include="libs\libscene\AssimpUtils.cpp" />
+    <ClCompile Include="libs\libscene\BufferObject.cpp" />
+    <ClCompile Include="libs\libscene\Camera.cpp" />
+    <ClCompile Include="libs\libscene\DrawUtils.cpp" />
+    <ClCompile Include="libs\libscene\ParticleEmitter.cpp" />
+    <ClCompile Include="libs\libscene\ParticleSystem.cpp" />
+    <ClCompile Include="libs\libscene\SkeletalAnimator.cpp" />
+    <ClCompile Include="libs\libscene\SkeletalModel3DRenderer.cpp" />
+    <ClCompile Include="libs\libscene\SkeletalModelLoader.cpp" />
+    <ClCompile Include="libs\libscene\StaticModel3DRenderer.cpp" />
+    <ClCompile Include="libs\libscene\StaticModelLoader.cpp" />
+    <ClCompile Include="libs\libscene\Tesselator.cpp" />
+    <ClCompile Include="libs\libscene\Texture2D.cpp" />
+    <ClCompile Include="libs\libshading\AbstractProgramAdapter.cpp" />
+    <ClCompile Include="libs\libshading\ProgramInfo.cpp" />
+    <ClCompile Include="libs\libshading\ProgramUniform.cpp" />
+    <ClCompile Include="libs\libshading\ShaderProgram.cpp" />
+    <ClCompile Include="libs\libshading\VertexAttribute.cpp" />
+    <ClCompile Include="libs\libsystem\AbstractWindowClient.cpp" />
+    <ClCompile Include="libs\libsystem\MouseGrabber.cpp" />
+    <ClCompile Include="libs\libsystem\PlatformFeatures.cpp" />
+    <ClCompile Include="libs\libsystem\Utils.cpp" />
+    <ClCompile Include="libs\libsystem\Window.cpp" />
+    <ClCompile Include="PhongProgram.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="WindowClient.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

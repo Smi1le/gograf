@@ -1,0 +1,55 @@
+{
+    "objects": [
+        {
+            "model": "3ds/Walls/Room.3DS",
+            "position": [14, 5, 0],
+            "eulerAngles": [0, 0, 0],
+            "size": 0.2
+        },{
+ 	          "model": "3ds/Divan/Divan.3DS",
+            "position": [32, 5, 2],
+            "eulerAngles": [0, 3.14, 0],
+            "size": 0.08
+	      },{
+ 	          "model": "3ds/TV.3DS",
+            "position": [-8, 6, 6],
+            "eulerAngles": [0, 3.14, 0],
+            "size": 0.2
+	      },{
+ 	          "model": "3ds/ch_a_table/chair_and_table.3DS",
+            "position": [38, 5, 25],
+            "eulerAngles": [0, 1.57, 0],
+            "size": 8
+	      },{
+ 	          "model": "3ds/Walls/Windows.3DS",
+            "position": [10, 10, -9],
+            "eulerAngles": [0, -0.7, 0],
+            "size": 0.005
+	      },{
+ 	          "model": "3ds/ch_a_table/Cupboard.3DS",
+            "position": [40, 12, 40],
+            "eulerAngles": [0, 1.57, 0],
+            "size": 0.03
+	      },{
+ 	          "model": "3ds/Door/Door.3ds",
+            "position": [-10.5, 5, 32],
+            "eulerAngles": [0, 1.57, 0],
+            "size": 0.15
+	      },{
+ 	          "model": "3ds/Divan/Table.3ds",
+            "position": [22, 5, 12],
+            "eulerAngles": [0, 0, 0],
+            "size": 0.1
+	      },{
+ 	          "model": "3ds/ch_a_table/house2.3DS",
+            "position": [17, 5, 36],
+            "eulerAngles": [0, 0, 0],
+            "size": 0.5
+	      },{
+ 	          "model": "3ds/ch_a_table/lamp_living_room2.3DS",
+            "position": [0, 24, 0],
+            "eulerAngles": [0, 0, 0],
+            "size": 5
+	      }
+    ]
+}
